@@ -13,7 +13,8 @@ type WhatsAppMessenger struct {
 // Esto es crucial para que funcione con la interfaz Messenger.
 func NewWhatsAppMessenger(fromNumber string) *WhatsAppMessenger {
 	// & crea un puntero: "dame la dirección de memoria de este struct"
-	return &WhatsAppMessenger{fromNumber: fromNumber}
+	messengerStruct := WhatsAppMessenger{fromNumber: fromNumber}
+	return &messengerStruct
 }
 
 // 🎯 MÉTODO CON RECEPTOR

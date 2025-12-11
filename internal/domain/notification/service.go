@@ -5,10 +5,8 @@ type Service struct {
 }
 
 func NewNotificationService(messenger Messenger) *Service {
-
-	return &Service{
-		messenger: messenger,
-	}
+	serviceStruct := Service{messenger: messenger}
+	return &serviceStruct
 }
 
 func (service *Service) Notify(destination string, message string) error {
