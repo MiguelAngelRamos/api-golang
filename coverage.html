@@ -1,0 +1,259 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>api: Go Coverage Report</title>
+		<style>
+			body {
+				background: black;
+				color: rgb(80, 80, 80);
+			}
+			body, pre, #legend span {
+				font-family: Menlo, monospace;
+				font-weight: bold;
+			}
+			#topbar {
+				background: black;
+				position: fixed;
+				top: 0; left: 0; right: 0;
+				height: 42px;
+				border-bottom: 1px solid rgb(80, 80, 80);
+			}
+			#content {
+				margin-top: 50px;
+			}
+			#nav, #legend {
+				float: left;
+				margin-left: 10px;
+			}
+			#legend {
+				margin-top: 12px;
+			}
+			#nav {
+				margin-top: 10px;
+			}
+			#legend span {
+				margin: 0 5px;
+			}
+			.cov0 { color: rgb(192, 0, 0) }
+.cov1 { color: rgb(128, 128, 128) }
+.cov2 { color: rgb(116, 140, 131) }
+.cov3 { color: rgb(104, 152, 134) }
+.cov4 { color: rgb(92, 164, 137) }
+.cov5 { color: rgb(80, 176, 140) }
+.cov6 { color: rgb(68, 188, 143) }
+.cov7 { color: rgb(56, 200, 146) }
+.cov8 { color: rgb(44, 212, 149) }
+.cov9 { color: rgb(32, 224, 152) }
+.cov10 { color: rgb(20, 236, 155) }
+
+		</style>
+	</head>
+	<body>
+		<div id="topbar">
+			<div id="nav">
+				<select id="files">
+				
+				<option value="file0">github.com/MiguelAngelRamos/go-clean-api/cmd/api/main.go (0.0%)</option>
+				
+				<option value="file1">github.com/MiguelAngelRamos/go-clean-api/internal/domain/notification/service.go (71.4%)</option>
+				
+				<option value="file2">github.com/MiguelAngelRamos/go-clean-api/internal/infra/messaging/email_messenger.go (0.0%)</option>
+				
+				<option value="file3">github.com/MiguelAngelRamos/go-clean-api/internal/infra/messaging/instagram_messenger.go (0.0%)</option>
+				
+				<option value="file4">github.com/MiguelAngelRamos/go-clean-api/internal/infra/messaging/whatsapp_messenger.go (0.0%)</option>
+				
+				</select>
+			</div>
+			<div id="legend">
+				<span>not tracked</span>
+			
+				<span class="cov0">not covered</span>
+				<span class="cov8">covered</span>
+			
+			</div>
+		</div>
+		<div id="content">
+		
+		<pre class="file" id="file0" style="display: none">// cmd/api/main.go
+package main
+
+import (
+        "fmt"
+
+        "github.com/MiguelAngelRamos/go-clean-api/internal/domain/notification"
+        "github.com/MiguelAngelRamos/go-clean-api/internal/infra/messaging"
+)
+
+func main() <span class="cov0" title="0">{
+        fmt.Println("=== DIP + Clean Code en Go ===")
+
+        emailMessenger := messaging.NewEmailMessenger("soporte@miempresa.cl")
+        whatsAppMessenger := messaging.NewWhatsAppMessenger("+56912345678")
+
+        emailService := notification.NewNotificationService(emailMessenger)
+        whatsAppService := notification.NewNotificationService(whatsAppMessenger)
+
+        emailService.Notify("cliente@correo.com", "Mensaje por EMAIL")
+        whatsAppService.Notify("+56998765432", "Mensaje por WHATSAPP")
+
+        instagramMessenger := messaging.NewInstagramMessenger("Sofia0939")
+        instagramService := notification.NewNotificationService(instagramMessenger)
+        instagramService.Notify("Angel3945", "Estamos en el curso de testing multilenguage")
+}</span>
+</pre>
+		
+		<pre class="file" id="file1" style="display: none">package notification
+
+type Service struct {
+        messenger Messenger
+}
+
+func NewNotificationService(messenger Messenger) *Service <span class="cov8" title="1">{
+        serviceStruct := Service{messenger: messenger}
+        return &amp;serviceStruct
+}</span>
+
+func (service *Service) Notify(destination string, message string) error <span class="cov8" title="1">{
+
+        if destination == "" </span><span class="cov0" title="0">{
+                return ErrEmptyDestination
+        }</span>
+
+        <span class="cov8" title="1">if message == "" </span><span class="cov0" title="0">{
+                return ErrEmptyMessage
+        }</span>
+
+        <span class="cov8" title="1">return service.messenger.Send(destination, message)</span>
+}
+</pre>
+		
+		<pre class="file" id="file2" style="display: none">package messaging
+
+import "fmt"
+
+type EmailMessenger struct {
+        fromAddress string // Campo privado (minúscula inicial)
+}
+
+func NewEmailMessenger(fromAddress string) *EmailMessenger <span class="cov0" title="0">{
+
+        messengerStruct := EmailMessenger{fromAddress: fromAddress}
+
+        return &amp;messengerStruct
+}</span>
+
+/*
+func NewEmailMessenger(fromAddress string) *EmailMessenger {
+
+        return &amp;EmailMessenger{
+                fromAddress: fromAddress,
+        }
+}
+*/
+
+// *EmailMessenger IMPLEMENTA la interfaz Messenger (de forma IMPLÍCITA, sin declararlo)
+func (email *EmailMessenger) Send(destination string, message string) error <span class="cov0" title="0">{
+
+        fmt.Printf("[EMAIL] De: %s → Para: %s | Mensaje: %s\n",
+                email.fromAddress, destination, message)
+        return nil
+}</span>
+</pre>
+		
+		<pre class="file" id="file3" style="display: none">package messaging
+
+import "fmt"
+
+type InstagramMessenger struct {
+        userAdress string // Solo un campo de datos
+}
+
+func NewInstagramMessenger(userAdress string) *InstagramMessenger <span class="cov0" title="0">{
+        messengerStruct := InstagramMessenger{userAdress: userAdress}
+        return &amp;messengerStruct
+}</span>
+
+func (instagram *InstagramMessenger) Send(destination string, message string) error <span class="cov0" title="0">{
+        fmt.Printf("[INSTAGAM] De: %s → Para: %s | Mensaje: %s\n",
+                instagram.userAdress, destination, message)
+        return nil
+}</span>
+</pre>
+		
+		<pre class="file" id="file4" style="display: none">package messaging
+
+import "fmt"
+
+// WhatsAppMessenger es otra implementación concreta del contrato Messenger.
+// IMPORTANTE: Al igual que EmailMessenger, este struct solo contiene DATOS.
+type WhatsAppMessenger struct {
+        fromNumber string // Solo un campo de datos
+}
+
+// 🏭 CONSTRUCTOR
+// Devuelve *WhatsAppMessenger (un PUNTERO), no el valor completo.
+// Esto es crucial para que funcione con la interfaz Messenger.
+func NewWhatsAppMessenger(fromNumber string) *WhatsAppMessenger <span class="cov0" title="0">{
+        // &amp; crea un puntero: "dame la dirección de memoria de este struct"
+        messengerStruct := WhatsAppMessenger{fromNumber: fromNumber}
+        return &amp;messengerStruct
+}</span>
+
+// 🎯 MÉTODO CON RECEPTOR
+// (messenger *WhatsAppMessenger) es el RECEPTOR que vincula Send a *WhatsAppMessenger.
+//
+// NOTA IMPORTANTE: Aunque WhatsAppMessenger solo tiene el campo "fromNumber",
+// este método Send está "pegado" al tipo mediante el RECEPTOR.
+//
+// Gracias a esta línea, el compilador sabe que:
+// *WhatsAppMessenger tiene el método Send(string, string) error
+// Por lo tanto, *WhatsAppMessenger IMPLEMENTA Messenger (implícitamente)
+func (messenger *WhatsAppMessenger) Send(destination string, message string) error <span class="cov0" title="0">{
+        // "messenger" es el equivalente a "this" en Java
+        // Accedemos a messenger.fromNumber gracias al receptor
+        fmt.Printf("[WHATSAPP] De: %s → Para: %s | Mensaje: %s\n",
+                messenger.fromNumber, destination, message)
+        return nil
+}</span>
+
+// 📝 PATRÓN REPETIDO:
+// ===================
+// 1. Struct con solo DATOS (fromNumber)
+// 2. Constructor que devuelve PUNTERO (*WhatsAppMessenger) usando &amp;
+// 3. Método vinculado mediante RECEPTOR (messenger *WhatsAppMessenger)
+// 4. Implementa Messenger IMPLÍCITAMENTE (sin declararlo explícitamente)
+</pre>
+		
+		</div>
+	</body>
+	<script>
+	(function() {
+		var files = document.getElementById('files');
+		var visible;
+		files.addEventListener('change', onChange, false);
+		function select(part) {
+			if (visible)
+				visible.style.display = 'none';
+			visible = document.getElementById(part);
+			if (!visible)
+				return;
+			files.value = part;
+			visible.style.display = 'block';
+			location.hash = part;
+		}
+		function onChange() {
+			select(files.value);
+			window.scrollTo(0, 0);
+		}
+		if (location.hash != "") {
+			select(location.hash.substr(1));
+		}
+		if (!visible) {
+			select("file0");
+		}
+	})();
+	</script>
+</html>
