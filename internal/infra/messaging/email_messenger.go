@@ -8,15 +8,24 @@ type EmailMessenger struct {
 
 func NewEmailMessenger(fromAddress string) *EmailMessenger {
 
+	messengerStruct := EmailMessenger{fromAddress: fromAddress}
+
+	return &messengerStruct
+}
+
+/*
+func NewEmailMessenger(fromAddress string) *EmailMessenger {
+
 	return &EmailMessenger{
 		fromAddress: fromAddress,
 	}
 }
+*/
 
 // *EmailMessenger IMPLEMENTA la interfaz Messenger (de forma IMPLÍCITA, sin declararlo)
-func (messenger *EmailMessenger) Send(destination string, message string) error {
+func (email *EmailMessenger) Send(destination string, message string) error {
 
 	fmt.Printf("[EMAIL] De: %s → Para: %s | Mensaje: %s\n",
-		messenger.fromAddress, destination, message)
+		email.fromAddress, destination, message)
 	return nil
 }
