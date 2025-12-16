@@ -1,0 +1,14 @@
+mode: set
+github.com/MiguelAngelRamos/go-clean-api/cmd/api/main.go:11.13,26.2 10 0
+github.com/MiguelAngelRamos/go-clean-api/internal/infra/messaging/email_messenger.go:9.60,14.2 2 0
+github.com/MiguelAngelRamos/go-clean-api/internal/infra/messaging/email_messenger.go:26.77,31.2 2 0
+github.com/MiguelAngelRamos/go-clean-api/internal/infra/messaging/instagram_messenger.go:9.67,12.2 2 0
+github.com/MiguelAngelRamos/go-clean-api/internal/infra/messaging/instagram_messenger.go:14.85,18.2 2 0
+github.com/MiguelAngelRamos/go-clean-api/internal/infra/messaging/whatsapp_messenger.go:14.65,18.2 2 0
+github.com/MiguelAngelRamos/go-clean-api/internal/infra/messaging/whatsapp_messenger.go:29.84,35.2 2 0
+github.com/MiguelAngelRamos/go-clean-api/internal/domain/notification/service.go:7.59,10.2 2 1
+github.com/MiguelAngelRamos/go-clean-api/internal/domain/notification/service.go:12.74,14.23 1 1
+github.com/MiguelAngelRamos/go-clean-api/internal/domain/notification/service.go:14.23,16.3 1 1
+github.com/MiguelAngelRamos/go-clean-api/internal/domain/notification/service.go:18.2,18.19 1 1
+github.com/MiguelAngelRamos/go-clean-api/internal/domain/notification/service.go:18.19,20.3 1 0
+github.com/MiguelAngelRamos/go-clean-api/internal/domain/notification/service.go:22.2,22.53 1 1

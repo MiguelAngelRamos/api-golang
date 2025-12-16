@@ -57,7 +57,7 @@
 				
 				<option value="file0">github.com/MiguelAngelRamos/go-clean-api/cmd/api/main.go (0.0%)</option>
 				
-				<option value="file1">github.com/MiguelAngelRamos/go-clean-api/internal/domain/notification/service.go (71.4%)</option>
+				<option value="file1">github.com/MiguelAngelRamos/go-clean-api/internal/domain/notification/service.go (85.7%)</option>
 				
 				<option value="file2">github.com/MiguelAngelRamos/go-clean-api/internal/infra/messaging/email_messenger.go (0.0%)</option>
 				
@@ -118,7 +118,7 @@ func NewNotificationService(messenger Messenger) *Service <span class="cov8" tit
 
 func (service *Service) Notify(destination string, message string) error <span class="cov8" title="1">{
 
-        if destination == "" </span><span class="cov0" title="0">{
+        if destination == "" </span><span class="cov8" title="1">{
                 return ErrEmptyDestination
         }</span>
 
