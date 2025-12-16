@@ -10,5 +10,5 @@ github.com/MiguelAngelRamos/go-clean-api/internal/domain/notification/service.go
 github.com/MiguelAngelRamos/go-clean-api/internal/domain/notification/service.go:12.74,14.23 1 1
 github.com/MiguelAngelRamos/go-clean-api/internal/domain/notification/service.go:14.23,16.3 1 1
 github.com/MiguelAngelRamos/go-clean-api/internal/domain/notification/service.go:18.2,18.19 1 1
-github.com/MiguelAngelRamos/go-clean-api/internal/domain/notification/service.go:18.19,20.3 1 0
+github.com/MiguelAngelRamos/go-clean-api/internal/domain/notification/service.go:18.19,20.3 1 1
 github.com/MiguelAngelRamos/go-clean-api/internal/domain/notification/service.go:22.2,22.53 1 1

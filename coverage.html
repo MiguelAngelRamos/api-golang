@@ -57,7 +57,7 @@
 				
 				<option value="file0">github.com/MiguelAngelRamos/go-clean-api/cmd/api/main.go (0.0%)</option>
 				
-				<option value="file1">github.com/MiguelAngelRamos/go-clean-api/internal/domain/notification/service.go (85.7%)</option>
+				<option value="file1">github.com/MiguelAngelRamos/go-clean-api/internal/domain/notification/service.go (100.0%)</option>
 				
 				<option value="file2">github.com/MiguelAngelRamos/go-clean-api/internal/infra/messaging/email_messenger.go (0.0%)</option>
 				
@@ -122,7 +122,7 @@ func (service *Service) Notify(destination string, message string) error <span c
                 return ErrEmptyDestination
         }</span>
 
-        <span class="cov8" title="1">if message == "" </span><span class="cov0" title="0">{
+        <span class="cov8" title="1">if message == "" </span><span class="cov8" title="1">{
                 return ErrEmptyMessage
         }</span>
 
