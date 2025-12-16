@@ -56,3 +56,13 @@ func TestNotify_EmptyDestination_ReturnsError(t *testing.T) {
 	mockMessenger.AssertNotCalled(t, "Send")
 
 }
+
+func TestNotify_EmptyMessage_ReturnsError(t *testing.T) {
+	mockMessenger := new(MockMessenger)
+	service := NewNotificationService(mockMessenger)
+	err := service.Notify("user@example.com", "")
+
+	assert.Error(t, err)
+	assert.Equal(t, ErrEmptyMessage, err)
+	mockMessenger.AssertNotCalled(t, "Send")
+}
